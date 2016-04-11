@@ -21,6 +21,7 @@ with many fixes and behavioural improvements.
   - [Ubuntu](#ubuntu)
 - [Building from Source](#building-from-source)
   - [Linux / Unix / OS X](#linux--unix--os-x)
+  - [CentOS 5.x](#centos5x)
   - [Windows](#windows)
   - [Results](#results)
 - [Logstash Integration](#logstash-integration)
@@ -148,6 +149,23 @@ Run the following commands to download and build Log Courier.
     make
 
 *Note: If you receive errors whilst running `make`, try `gmake` instead.*
+
+### CentOS 5.x
+
+Run the following commands to download and build Log Courier.
+    
+    git clone https://github.com/cfgxy/log-courier
+    cd log-courier
+    git checkout centos5
+    make rpm
+
+Before this, you may need the following tools:
+    
+    [Go-1.4.3](https://storage.googleapis.com/golang/go1.4.3.src.tar.gz) (may have some problem in centos5.x, but can build)
+    [Ruby-2.3.0](https://www.ruby-lang.org/zh_cn/downloads/) (yum version is too old)
+
+    gem install bundler
+    bundler install
 
 ### Windows
 
