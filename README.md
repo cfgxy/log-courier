@@ -167,6 +167,10 @@ Before this, you may need the following tools:
 
     gem install bundler && bundler install
 
+And install the builded rpm with command:
+
+    yum localinstall --nogpgcheck log-courier-*.rpm
+
 ### Windows
 
 *Installing [msysGit](http://msysgit.github.io/) will provide you with Git and
