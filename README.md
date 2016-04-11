@@ -165,8 +165,7 @@ Before this, you may need the following tools:
 1. [Ruby-2.3.0](https://www.ruby-lang.org/zh_cn/downloads/) (yum version is too old)
 1. Some rubygems with command:
 
-    gem install bundler
-    bundler install
+    gem install bundler && bundler install
 
 ### Windows
 
