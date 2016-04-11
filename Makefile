@@ -140,6 +140,7 @@ rpm: all build/empty
 		--before-install $(BEFORE_INSTALL) \
 		--before-remove $(BEFORE_REMOVE) \
 		--config-files /etc/log-courier.conf \
+		--depends daemonize \
 		./bin/log-courier=$(PREFIX)/bin/ \
 		./bin/lc-tlscert=$(PREFIX)/bin/ \
 		./bin/lc-admin=$(PREFIX)/bin/ \
