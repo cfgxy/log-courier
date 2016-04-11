@@ -1,0 +1,6 @@
+user="log-courier"
+group="log-courier"
+chroot="/"
+chdir="/var/lib/log-courier"
+nice=""
+

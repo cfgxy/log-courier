@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source "https://ruby.taobao.org/"
 
 # Log Courier gem dependencies
 gem 'cabin',      '~> 0.6'

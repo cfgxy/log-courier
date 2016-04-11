@@ -99,6 +99,7 @@ endif
 	rm -rf vendor/bundle
 	rm -f Gemfile.lock
 	rm -f *.gem
+	rm -f *.rpm
 endif
 
 fix_version:
@@ -115,3 +116,36 @@ prepare: | fix_version setup_root
 bin/%: prepare
 	go get -d -tags "$(TAGS)" $*
 	go install -tags "$(TAGS)" $*
+
+
+build/empty: | build
+	mkdir $@
+
+
+
+
+.PHONY: rpm
+rpm: AFTER_INSTALL=pkg/centos/after-install.sh
+rpm: BEFORE_INSTALL=pkg/centos/before-install.sh
+rpm: BEFORE_REMOVE=pkg/centos/before-remove.sh
+rpm: PREFIX=/opt/log-courier
+rpm: VERSION=1.8.2
+rpm: all build/empty
+	fpm -f -s dir -t $@ -n log-courier -v $(VERSION) \
+		--architecture native \
+		--replaces lumberjack \
+		--description "a log shipping tool" \
+		--url "https://github.com/elasticsearch/log-courier" \
+		--after-install $(AFTER_INSTALL) \
+		--before-install $(BEFORE_INSTALL) \
+		--before-remove $(BEFORE_REMOVE) \
+		--config-files /etc/log-courier.conf \
+		./bin/log-courier=$(PREFIX)/bin/ \
+		./bin/lc-tlscert=$(PREFIX)/bin/ \
+		./bin/lc-admin=$(PREFIX)/bin/ \
+		./docs/examples/example-confd.conf=/etc/log-courier.conf \
+		./build/etc=/ \
+		./build/empty/=/etc/log-courier.d/ \
+		./build/empty/=/var/lib/log-courier/ \
+		./build/empty/=/var/log/log-courier/ \
+
