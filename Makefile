@@ -130,8 +130,9 @@ rpm: BEFORE_INSTALL=pkg/centos/before-install.sh
 rpm: BEFORE_REMOVE=pkg/centos/before-remove.sh
 rpm: PREFIX=/opt/log-courier
 rpm: VERSION=1.8.2
+rpm: RELEASE=2
 rpm: all build/empty
-	fpm -f -s dir -t $@ -n log-courier -v $(VERSION) \
+	fpm -f -s dir -t $@ -n log-courier -v $(VERSION) --iteration $(RELEASE) \
 		--architecture native \
 		--replaces lumberjack \
 		--description "a log shipping tool" \
